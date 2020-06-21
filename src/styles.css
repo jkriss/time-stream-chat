@@ -1,0 +1,60 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+form#post {
+  display: flex;
+  flex-direction: row;
+  padding: 0.75rem;
+  background: #eee;
+}
+
+form#post [name=message] {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.message-list {
+  background: #fafafa;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: .75rem;
+}
+.message-list .source {
+  padding: 0.5em 0 0.25em 0;
+}
+.message-list .message {
+  display: flex;
+  flex-direction: row-reverse;
+  align-self: flex-start;
+  line-height: 1.3rem;
+}
+
+.message-list .content {
+  flex: 1;
+}
+
+.message-list .message .timestamp {
+  width: 4rem;
+  text-align: right;
+  padding-right: 0.5rem;
+  color: #666;
+}
