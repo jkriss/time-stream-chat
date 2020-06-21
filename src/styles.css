@@ -51,9 +51,11 @@ form#post [name=message] {
 .message-list .content {
   flex: 1;
 }
+.message-list .content img {
+  max-width: 10rem;
+}
 
 .message-list .message .timestamp {
-  width: 4rem;
   text-align: right;
   padding-right: 0.5rem;
   color: #666;

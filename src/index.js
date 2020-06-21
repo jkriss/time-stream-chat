@@ -5,7 +5,7 @@ import config from '../config.json'
 console.log("config is", config)
 
 const todayFormat = 'h:mma'
-const notTodayFormat = 'MMM Do, h:mma'
+const notTodayFormat = 'MMM Do YYYY, h:mma'
 
 function df(date) {
   const now = new Date()

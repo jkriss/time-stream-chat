@@ -3,14 +3,19 @@ async function getMessage(streamUrl, before) {
   const res = await fetch(url)
   if (res.ok) {
     let data
+    let url
     const type = res.headers.get('content-type')
+    if (!type) throw new Error('content-type header required')
     if (type.includes('text/plain')) {
       data = await res.text()
     } else if (type.includes('json')) {
       data = await res.json()
+    } else if (type.includes('image')) {
+      const url = URL.createObjectURL(await res.blob())
+      data = `<img src="${url}">`
     }
     const date = res.headers.get('date')
-    return { body: data, contentType: type, date, t: new Date(date) }
+    return { body: data, contentType: type, date, t: new Date(date), url }
   } else {
     console.warn(res.status)
   }
