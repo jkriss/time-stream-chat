@@ -1,11 +1,14 @@
 {
   "name": "time-stream-chat",
   "version": "0.0.1",
-  "main": "index.js",
   "author": "Jesse Kriss <jesse@jklabs.net>",
   "license": "MIT",
+  "browserslist": [
+    "> 5%"
+  ],
   "scripts": {
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "devDependencies": {
     "parcel": "^2.0.0-beta.1"
