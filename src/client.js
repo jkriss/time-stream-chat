@@ -1,10 +1,12 @@
-async function getMessage(streamUrl, before) {
-  const url = before ? `${streamUrl}?before=${encodeURIComponent(before)}` : streamUrl
+const parseLinkHeader = require('parse-link-header')
+
+async function getMessage(url) {
   const res = await fetch(url)
   if (res.ok) {
     let data
     let url
     const type = res.headers.get('content-type')
+    const links = parseLinkHeader(res.headers.get('link'))
     if (!type) throw new Error('content-type header required')
     if (type.includes('text/plain')) {
       data = await res.text()
@@ -15,7 +17,7 @@ async function getMessage(streamUrl, before) {
       data = `<img src="${url}">`
     }
     const date = res.headers.get('date')
-    return { body: data, contentType: type, date, t: new Date(date), url }
+    return { body: data, contentType: type, date, t: new Date(date), url, links }
   } else {
     console.warn(res.status)
   }
@@ -25,14 +27,18 @@ export async function getMessages(streamUrl) {
   const messages = []
   const max = 20
   let m
-  let before
+  let url = streamUrl
   do {
-    m = await getMessage(streamUrl, before)
+    m = await getMessage(url)
     if (m) {
+      // console.log("got message", m)
+      // console.log("previous:", m.links.previous)
       messages.push(m)
-      before = m.date
+      // url = null
+      const urlStr = m.links.previous ? m.links.previous.url : null
+      url = urlStr && new URL(urlStr, streamUrl)
     }
-  } while (messages.length < max && m && m.date)
+  } while (messages.length < max && m && url)
   return messages
 }
 

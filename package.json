@@ -14,6 +14,7 @@
     "parcel": "^2.0.0-beta.1"
   },
   "dependencies": {
-    "fecha": "^4.2.0"
+    "fecha": "^4.2.0",
+    "parse-link-header": "^1.0.1"
   }
 }
