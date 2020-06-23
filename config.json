@@ -1,11 +1,11 @@
 {
   "streams": [
     {
-      "url": "http://localhost:3333/streams/K5BXQ5F5PFSNGJ09",
+      "url": "http://localhost:3333/K5BXQ5F5PFSNGJ09",
       "label": "person a"
     },
     {
-      "url": "http://localhost:3333/streams/915DG1959Q4G62WM",
+      "url": "http://localhost:3333/915DG1959Q4G62WM",
       "label": "person b",
       "secret": "01EBAEG102H1ZPZPQP8SCX49CP"
     }
